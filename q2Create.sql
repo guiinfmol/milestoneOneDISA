@@ -9,19 +9,14 @@ ALTER TABLE Courses DROP COLUMN CourseDescription;
 ANALYZE VERBOSE Degrees;
 ANALYZE VERBOSE Students;
 ANALYZE VERBOSE StudentRegistrationsToDegrees;
-ANALYZE VERBOSE Teachers;
 ANALYZE VERBOSE Courses;
 ANALYZE VERBOSE CourseOffers;
-ANALYZE VERBOSE TeacherAssignmentsToCourses;
 ANALYZE VERBOSE StudentAssistants;
 ANALYZE VERBOSE CourseRegistrations;
-
-
 --OPTIMIZATION FOR QUERY 1
 CREATE INDEX idx_srtd_on_courseregistrations ON courseregistrations(studentregistrationid);
 
 --OPTIMIZATION FOR QUERY 2
-DROP MATERIALIZED VIEW PassedCreditsPerRegistration;
 CREATE MATERIALIZED VIEW PassedCreditsPerRegistration(studentregistrationid, passedCredits, avgMark) AS SELECT StudentRegistrationId, sum(ects) passedCredits, cast(1.0*sum(ects*grade)/sum(ects) as decimal(10,2)) as AvgMark FROM courseregistrations d natural join courseoffers natural join courses WHERE grade >= 5 GROUP BY StudentRegistrationId;
 --create index idx_srtdid_aux ON PassedCreditsPerRegistration(studentregistrationid); drop this index
 
