@@ -1,4 +1,4 @@
-select * , (select count(*) from courseregistrations where courseofferid = 1) as NumberOfRegStudents,
+select , (select count(*) from courseregistrations where courseofferid = 1) as NumberOfRegStudents,
 	(select count(*) from studentassistants where courseofferid = 1) as NumberOfStudAssistants
 	from courseoffers
 	natural join courses
@@ -16,6 +16,4 @@ select * , (select count(*) from courseregistrations where courseofferid = 1) as
 	natural join teachers
 	where courseofferid = 1;
 
-select avg(grade)
-	from courseregistrations
-	where studentregistrationid = 140;
+select avg(grade) from courseregistrations where studentregistrationid = 140;
