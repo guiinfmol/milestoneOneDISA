@@ -1,12 +1,3 @@
-DROP TABLE StudentRegistrationsToDegrees CASCADE;
-DROP TABLE Students CASCADE;
-DROP TABLE Degrees CASCADE;
-DROP TABLE CourseRegistrations CASCADE;
-DROP TABLE StudentAssistants CASCADE;
-DROP TABLE TeacherAssignmentsToCourses CASCADE;
-DROP TABLE CourseOffers CASCADE;
-DROP TABLE Courses CASCADE;
-DROP TABLE Teachers CASCADE;
 CREATE UNLOGGED TABLE Degrees(DegreeId bigint, Dept varchar(50), DegreeDescription varchar(200), TotalECTS int);
 CREATE UNLOGGED TABLE Students(StudentId bigint, StudentName varchar(50), Address varchar(200), BirthyearStudent int, Gender char(1));
 CREATE UNLOGGED TABLE StudentRegistrationsToDegrees(StudentRegistrationId bigint, StudentId bigint, DegreeId bigint, RegistrationYear int);
