@@ -1,3 +1,3 @@
-SELECT * FROM CourseOffers, Courses, Degrees, Teachers WHERE CourseOffers.CourseOfferId = 1;
-SELECT StudentAssistants.CourseOfferId, CourseId, Year, Quartile, StudentId, StudentName, Address, BirthYearStudent, Gender, DegreeId, Dept, DegreeDescription, TotalECTS FROM StudentAssistants, CourseOffers, Students, Degrees WHERE StudentAssistents.StudenRegistrationId=140;
+SELECT 0;
+SELECT 0;
 SELECT AVG(Grade) FROM CourseRegistrations WHERE CourseRegistrations.StudentRegistrationId=140;
