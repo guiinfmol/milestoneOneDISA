@@ -1,7 +1,7 @@
-select coursename, grade from  studentregistrationstodegrees natural join courseoffers natural join courseregistrations natural join courses where studentid=%1% and degreeid=%2% AND grade >= 5 ORDER BY year, quartile, courseofferid;
 select 0;
 select 0;
 select 0;
+select 1.0*sum(case when gender='F' THEN 1 ELSE 0 END)/count(*)) as percentage from studentregistrationstodegrees natural join students natural join degrees where dept = %1%
 select 0;
 select 0;
 select 0;
