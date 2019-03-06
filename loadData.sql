@@ -7,3 +7,4 @@
 \copy TeacherAssignmentsToCourses FROM '/mnt/ramdisk/tables/TeacherAssignmentsToCourses.table' DELIMITER ',' CSV HEADER;
 \copy StudentAssistants FROM '/mnt/ramdisk/tables/StudentAssistants.table' DELIMITER ',' CSV HEADER;
 \copy CourseRegistrations FROM '/mnt/ramdisk/tables/CourseRegistrations.table' DELIMITER ',' CSV HEADER NULL AS 'null';
+ANALYZE VERBOSE;
