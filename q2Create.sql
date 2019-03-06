@@ -1,18 +1,12 @@
-DROP TABLE Teachers;
-DROP TABLE TeacherAssignmentsToCourses;
-ALTER TABLE Degrees DROP COLUMN DegreeDescription;
-ALTER TABLE Students DROP COLUMN Address;
-ALTER TABLE Students DROP COLUMN StudentName;
-ALTER TABLE Courses DROP COLUMN CourseDescription;
+--DROP TABLE Teachers;
+--DROP TABLE TeacherAssignmentsToCourses;
+--ALTER TABLE Degrees DROP COLUMN DegreeDescription;
+--ALTER TABLE Students DROP COLUMN Address;
+--ALTER TABLE Students DROP COLUMN StudentName;
+--ALTER TABLE Courses DROP COLUMN CourseDescription;
 
 --ANALYZE ON ALL TABLES
-ANALYZE VERBOSE Degrees;
-ANALYZE VERBOSE Students;
-ANALYZE VERBOSE StudentRegistrationsToDegrees;
-ANALYZE VERBOSE Courses;
-ANALYZE VERBOSE CourseOffers;
-ANALYZE VERBOSE StudentAssistants;
-ANALYZE VERBOSE CourseRegistrations;
+ANALYZE VERBOSE;
 --OPTIMIZATION FOR QUERY 1
 CREATE INDEX idx_srtd_on_courseregistrations ON courseregistrations(studentregistrationid);
 
@@ -22,5 +16,4 @@ CREATE MATERIALIZED VIEW PassedCreditsPerRegistration(studentregistrationid, pas
 
 --OPTIMIZATION FOR QUERY 3
 CREATE MATERIALIZED VIEW ActiveStudents(studentregistrationid) AS select studentregistrationid FROM PassedCreditsPerRegistration d natural join studentregistrationstodegrees natural join degrees where totalects <= passedcredits GROUP BY studentregistrationid;
-
 --OPT create index idx_degid ON studentregistrationstodegrees using hash(degreeid);
