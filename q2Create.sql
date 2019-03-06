@@ -21,6 +21,6 @@ CREATE MATERIALIZED VIEW PassedCreditsPerRegistration(studentregistrationid, pas
 --create index idx_srtdid_aux ON PassedCreditsPerRegistration(studentregistrationid); drop this index
 
 --OPTIMIZATION FOR QUERY 3
-CREATE MATERIALIZED VIEW ActiveStudents(studentid) AS select studentid FROM PassedCreditsPerRegistration d natural join studentregistrationstodegrees natural join degrees where totalects <= passedcredits GROUP BY studentid;
+CREATE MATERIALIZED VIEW ActiveStudents(studentregistrationid) AS select studentregistrationid FROM PassedCreditsPerRegistration d natural join studentregistrationstodegrees natural join degrees where totalects <= passedcredits GROUP BY studentregistrationid;
 
 --OPT create index idx_degid ON studentregistrationstodegrees using hash(degreeid);
