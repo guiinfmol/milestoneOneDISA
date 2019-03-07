@@ -1,4 +1,5 @@
 # Project description
+Group 23 - Milestone 1 repository for the course 2ID70.
 #### load.sh
 This is a bash script containing two commands calling createTables.sql and loadData.sql to prepare the DB for answering the queries in queriesAfterLoading.sql 
 #### createTables.sql
