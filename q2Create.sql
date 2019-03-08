@@ -5,4 +5,4 @@ CREATE INDEX idx_srid_activestudents ON ActiveStudents(studentregistrationid);
 CREATE MATERIALIZED VIEW MaxGradesOfferAndStudent(courseofferid, grade, studentid) AS SELECT courseofferid, grade, studentid FROM (SELECT courseofferid, max(grade) from courseregistrations natural join courseoffers where year = 2018 and quartile = 1 GROUP BY courseofferid) AS FOO NATURAL JOIN COURSEREGISTRATIONS cr NATURAL JOIN studentregistrationstodegrees WHERE foo.max = cr.grade;
 CREATE INDEX idx_sid_maxgrades ON MaxGradesOfferAndStudent(studentid);
 CREATE VIEW studentsCourseOfExcellence(studentid, numberCourses) AS SELECT STUDENTID, COUNT(*) as numberCourses FROM MaxGradesOfferAndStudent GROUP BY STUDENTID;
-ANALYZE;
+ANALYZE VERBOSE;
