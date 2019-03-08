@@ -4,5 +4,5 @@ select degreeid, 1.0*sum(case when gender='F' THEN 1 ELSE 0 END)/count(*) as per
 select 1.0*sum(case when gender='F' THEN 1 ELSE 0 END)/count(*) as percentage from studentregistrationstodegrees srtd, students s, degrees d where dept = %1% AND srtd.studentid = s.studentid AND srtd.degreeid = d.degreeid;
 SELECT 0;
 select * from studentsCourseOfExcellence where numberCourses >= %1%;
-SELECT degreeid, birthyearstudent, gender, avg(avgMark) as avgGrade FROM PassedCreditsPerRegistration natural join activestudents natural join studentregistrationstodegrees natural join students natural join degrees GROUP BY CUBE(degreeid, birthyearstudent, gender) ORDER BY degreeid, birthyearstudent, gender;
+select 0;
 select coursename, year, quartile from ((select courseofferid, count(*) as numstudents from courseregistrations group by courseofferid) as foo natural join (select courseofferid, count(*) as numassistants from studentassistants group by courseofferid) as foo2) natural join courseoffers natural join courses where foo.numstudents > 50 * foo2.numassistants ORDER BY COURSEOFFERID;
