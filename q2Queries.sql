@@ -1,4 +1,4 @@
-select coursename, grade from courseoffers natural join courseregistrations natural join studentregistrationstodegrees natural join courses where studentid = %1% and degreeid = %2% AND grade >= 5 ORDER BY year, quartile, courseofferid;
+select c.coursename, cr.grade from courseoffers co, courses c, courseregistrations cr, studentregistrationstodegrees sr where sr.studentid = %1% AND sr.degreeid = %2% AND cr.grade >= 5 AND co.courseid = c.courseid AND sr.studentregistrationid = cr.studentregistrationid AND co.courseofferid = cr.courseofferid ORDER BY co.year, co.quartile, co.courseofferid;
 SELECT 0;
 SELECT 0;
 SELECT 0;
