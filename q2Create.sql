@@ -6,4 +6,5 @@ CREATE INDEX idx_srid_activestudents ON ActiveStudents(studentid);
 CREATE MATERIALIZED VIEW MaxGradesOfferAndStudent(courseofferid, grade, studentid) AS SELECT foo.courseofferid, cr.grade, sr.studentid FROM (SELECT cr.courseofferid, max(grade) from courseregistrations cr, courseoffers co where year = 2018 and quartile = 1 AND cr.courseofferid = co.courseofferid GROUP BY cr.courseofferid) AS FOO, COURSEREGISTRATIONS cr, studentregistrationstodegrees sr WHERE foo.max = cr.grade AND foo.courseofferid = cr.courseofferid AND cr.studentregistrationid = sr.studentregistrationid;
 CREATE INDEX idx_sid_maxgrades ON MaxGradesOfferAndStudent(studentid);
 CREATE VIEW studentsCourseOfExcellence(studentid, numberCourses) AS SELECT STUDENTID, COUNT(*) as numberCourses FROM MaxGradesOfferAndStudent GROUP BY STUDENTID;
+CREATE VIEW CourseOffersWithLess as SELECT courseofferid FROM AssistantsAndRegistrations WHERE (1.0*numstudents/50) < numassistants;
 ANALYZE VERBOSE;
