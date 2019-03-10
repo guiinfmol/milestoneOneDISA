@@ -5,4 +5,4 @@ select 1.0*sum(case when gender='F' THEN 1 ELSE 0 END)/count(*) as percentage fr
 select courseid, 1.0*sum(case when grade>=%1% THEN 1 ELSE 0 END)/count(*) as percentage from courseregistrations cr, courseoffers co where grade IS NOT NULL AND cr.courseofferid = co.courseofferid group by courseid order by courseid;
 select * from studentsCourseOfExcellence where numberCourses >= %1% ORDER BY studentid;
 SELECT 0;
-select coursename, year, quartile from courseofferswithless col, courseoffers co, courses c where col.courseofferid = co.courseofferid  AND co.courseid = c.courseid ORDER BY co.courseofferid;
+select 0;
