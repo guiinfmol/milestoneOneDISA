@@ -5,4 +5,4 @@ select 1.0*sum(case when gender='F' THEN 1 ELSE 0 END)/count(*) as percentage fr
 select courseid, 1.0*sum(case when grade>=%1% THEN 1 ELSE 0 END)/count(*) as percentage from courseregistrations cr, courseoffers co where grade IS NOT NULL AND cr.courseofferid = co.courseofferid group by courseid order by courseid;
 select * from studentsCourseOfExcellence where numberCourses >= %1% ORDER BY studentid;
 SELECT degreeid, birthyearstudent, gender, avg(avgMark) as avgGrade FROM students natural join passedcreditsperregistration natural join studentregistrationstodegrees natural join ActiveStudents natural join courseregistrations natural join courseoffers natural join courses GROUP BY CUBE(degreeid, birthyearstudent, gender) ORDER BY degreeid, birthyearstudent, gender;
-select coursename, year, quartile from courseoffers co natural join courses where (select count(*)  from courseregistrations where co.courseofferid = courseofferid) / 50 > (select count(*)  from studentassistants where co.courseofferid = courseofferid) ORDER BY courseofferid;
+select 0;
