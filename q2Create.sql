@@ -9,7 +9,7 @@ CREATE MATERIALIZED VIEW MaxGradesOfferAndStudent(courseofferid, grade, studenti
 CREATE INDEX idx_sid_maxgrades ON MaxGradesOfferAndStudent(studentid);
 CREATE VIEW studentsCourseOfExcellence(studentid, numberCourses) AS SELECT STUDENTID, COUNT(*) as numberCourses FROM MaxGradesOfferAndStudent GROUP BY STUDENTID;
 
-CREATE VIEW AssistantsAndRegistrations(courseofferid, numstudents, numassistants) as select courseofferid, (select count(*) from courseregistrations where courseofferid = co.courseofferid) as numStudents, (select count(*) from studentassistants where courseofferid = co.courseofferid) as numAssistants from courseoffers co;
-CREATE VIEW CourseOffersWithLess as SELECT courseofferid FROM AssistantsAndRegistrations WHERE (1.0*numstudents/50) < numassistants;
-
+CREATE VIEW aux1 AS select courseofferid, count(*) as regs from courseregistrations group by courseofferid order by courseofferid;
+CREATE VIEW aux2 AS select courseofferid, (select count(*) from studentassistants where courseofferid = co.courseofferid) as ass from courseoffers co order by co.courseofferid;
+CREATE VIEW CourseOffersRegsAss AS select * from aux1, aux2 where aux1.courseofferid = aux2.courseofferid;
 ANALYZE;
