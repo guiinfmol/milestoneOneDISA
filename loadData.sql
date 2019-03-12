@@ -12,3 +12,4 @@ ALTER TABLE Students ADD PRIMARY KEY(StudentId);
 ALTER TABLE StudentRegistrationsToDegrees ADD PRIMARY KEY(StudentRegistrationId);
 ALTER TABLE Courses ADD PRIMARY KEY(CourseId);
 ALTER TABLE CourseOffers ADD PRIMARY KEY(CourseOfferId);
+ANALYZE;
