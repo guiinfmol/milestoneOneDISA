@@ -14,5 +14,5 @@ CREATE VIEW studentsCourseOfExcellence(studentid, numberCourses) AS SELECT STUDE
 
 CREATE VIEW aux1 AS select courseofferid, count(*) as regs from courseregistrations group by courseofferid order by courseofferid;
 CREATE VIEW aux2 AS select courseofferid, (select count(*) from studentassistants where courseofferid = co.courseofferid) as ass from courseoffers co order by co.courseofferid;
-CREATE VIEW CourseOffersRegsAss AS select * from aux1, aux2 where aux1.courseofferid = aux2.courseofferid;
+CREATE VIEW CourseOffersRegsAss AS select aux1.courseofferid, regs, ass from aux1, aux2 where aux1.courseofferid = aux2.courseofferid;
 ANALYZE;
