@@ -1,3 +1,4 @@
+DROP TATABLE Teachers;
 CREATE INDEX idx_coid_courseregistrations ON CourseRegistrations(CourseOfferId);
 CREATE INDEX idx_coid_studentassistants ON StudentAssistants(CourseOfferId);
 
