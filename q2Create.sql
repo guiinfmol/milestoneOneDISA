@@ -1,3 +1,6 @@
+CREATE INDEX idx_coid_courseregistrations ON CourseRegistrations(CourseOfferId);
+CREATE INDEX idx_coid_studentassistants ON StudentAssistants(CourseOfferId);
+
 CREATE INDEX idx_srid_courseregistrations ON courseregistrations(studentregistrationid);
 CREATE MATERIALIZED VIEW PassedCreditsPerRegistration(studentregistrationid, passedCredits, avgMark) AS SELECT StudentRegistrationId, sum(ects) passedCredits, 1.0*sum(ects*grade)/sum(ects)::float as AvgMark FROM courseregistrations cr, courseoffers co, courses c WHERE grade >= 5 AND  cr.courseofferid = co.courseofferid AND co.courseid = c.courseid GROUP BY StudentRegistrationId;
 
